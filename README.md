@@ -37,7 +37,7 @@
 - **scriptpredefined** 自定义预处理脚本，需填入路径
 - **scriptgeo** 自定义geo脚本，需填入路径
 - **scriptip** 自定义ip脚本，需填入路径
-> **警告**<br>下面的预设变量修改可能具有风险，改动任意一条会导致Miaoko官方主端无法连接至Miaospeed，如果您需要使用第三方软件快速对接Miaospspeed，可以自由修改
+> **警告**<br>下面的预设变量修改可能具有风险，改动任意一条会导致Miaoko官方主端无法连接至Miaospeed，如果您需要使用第三方软件快速对接Miaospeed，可以自由修改
 - **buildtoken** 自定义构建令牌，详见官方文档
 - **serverpublickey** 自定义Miaospeed服务器刚公钥，需填入路径
 - **serverprivatekey** 自定义Miaospeed服务器私钥，需填入路径
