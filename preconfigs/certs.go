@@ -6,7 +6,7 @@ import (
 )
 
 func MakeSelfSignedTLSServer() *tls.Config {
-	cert, _ := tls.X509KeyPair([]byte(MIAOKO_TLS_CRT), []byte(MIAOKO_TLS_KEY))
+	cert, _ := tls.X509KeyPair([]byte(ECFG.ServerPublicKey), []byte(ECFG.ServerPrivateKey))
 
 	// Construct a tls.config
 	tlsConfig := &tls.Config{

@@ -7,10 +7,7 @@ var BUILDCOUNT string
 var COMMIT string
 var BRAND string
 
-//go:embed embeded/BUILDTOKEN.key
-var BUILDTOKEN string
-
 const (
 	IDENTIFIER = "Speed"
-	VERSION    = "4.3.2"
+	VERSION    = "230616 Community(Official 4.3.2)"
 )

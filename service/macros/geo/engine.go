@@ -1,6 +1,7 @@
 package geo
 
 import (
+	"github.com/miaokobot/miaospeed/preconfigs"
 	"net"
 	"strings"
 
@@ -13,7 +14,7 @@ func ExecIpCheck(p interfaces.Vendor, script string, network interfaces.RequestO
 	ipstacks = (&interfaces.IPStacks{}).Init()
 
 	vm := engine.VMNewWithVendor(p, network)
-	vm.RunString(engine.PREDEFINED_SCRIPT + engine.DEFAULT_IP_SCRIPT + script)
+	vm.RunString(preconfigs.ECFG.ScriptPredefined + preconfigs.ECFG.ScriptIp + script)
 	caller := "ip_resolve_default"
 	if engine.HasFunction(vm, "ip_resolve") {
 		caller = "ip_resolve"
@@ -42,9 +43,9 @@ func ExecIpCheck(p interfaces.Vendor, script string, network interfaces.RequestO
 func ExecGeoCheck(p interfaces.Vendor, script string, ip string, network interfaces.RequestOptionsNetwork) *interfaces.GeoInfo {
 	vm := engine.VMNewWithVendor(p, network)
 	if script == "" {
-		script = engine.DEFAULT_GEOIP_SCRIPT
+		script = preconfigs.ECFG.ScriptGeo
 	}
-	vm.RunString(engine.PREDEFINED_SCRIPT + script)
+	vm.RunString(preconfigs.ECFG.ScriptPredefined + script)
 
 	ret, err := engine.ExecTaskCallback(vm, "handler", ip)
 	if engine.ThrowExecTaskErr("GeoCheck", err) {

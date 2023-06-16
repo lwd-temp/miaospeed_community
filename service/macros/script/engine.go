@@ -1,6 +1,7 @@
 package script
 
 import (
+	"github.com/miaokobot/miaospeed/preconfigs"
 	"runtime"
 	"time"
 
@@ -20,7 +21,7 @@ func ExecScript(p interfaces.Vendor, script *interfaces.Script) interfaces.Scrip
 
 	startTime := time.Now()
 	ret, err := engine.RunWithTimeout(vm, time.Duration(script.TimeoutMillis)*time.Millisecond, func() (goja.Value, error) {
-		vm.RunString(engine.PREDEFINED_SCRIPT + script.Content)
+		vm.RunString(preconfigs.ECFG.ScriptPredefined + script.Content)
 		return engine.ExecTaskCallback(vm, "handler")
 	})
 

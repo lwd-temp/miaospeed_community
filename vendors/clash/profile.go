@@ -11,6 +11,7 @@ import (
 func parseProxy(proxyName, proxyPayload string) constant.Proxy {
 	var payload map[string]any
 	yaml.Unmarshal([]byte(proxyPayload), &payload)
+	//payload["ip-version"] = "ipv4-prefer"
 	proxy, err := adapter.ParseProxy(payload)
 
 	if err != nil {

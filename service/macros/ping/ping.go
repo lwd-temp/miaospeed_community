@@ -67,6 +67,7 @@ func pingViaTrace(ctx context.Context, p interfaces.Vendor, url string) (uint16,
 
 	connStart := time.Now().UnixMilli()
 	if resp, err := transport.RoundTrip(req); err != nil {
+		fmt.Println(err)
 		return 0, 0, err
 	} else {
 		connEnd := time.Now().UnixMilli()

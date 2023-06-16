@@ -49,15 +49,15 @@ func RequestUnsafe(ctx context.Context, p interfaces.Vendor, reqOpt *interfaces.
 	for ckey, cval := range reqOpt.Cookies {
 		req.AddCookie(&http.Cookie{Name: ckey, Value: cval})
 	}
-	req = req.WithContext(ctx)
+	//req = req.WithContext(ctx)
 
 	// connect proxy bridge
 	// init params copied from http.DefaultTransport
 	transport := &http.Transport{
-		MaxIdleConns:          100,
+		/*MaxIdleConns:          100,
 		IdleConnTimeout:       10 * time.Second,
 		TLSHandshakeTimeout:   5 * time.Second,
-		ExpectContinueTimeout: 1 * time.Second,
+		ExpectContinueTimeout: 1 * time.Second,*/
 	}
 
 	if p != nil {
@@ -74,7 +74,7 @@ func RequestUnsafe(ctx context.Context, p interfaces.Vendor, reqOpt *interfaces.
 	// the maximum count of redirection is 64
 	redirects := []string{}
 	client := http.Client{
-		Timeout:   30 * time.Second,
+		//Timeout:   30 * time.Second,
 		Transport: transport,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			if reqOpt.NoRedir || len(redirects) > 64 {
@@ -101,6 +101,7 @@ func Request(ctx context.Context, p interfaces.Vendor, reqOpt *interfaces.Reques
 	start := time.Now()
 	resp, redirects, err = RequestUnsafe(ctx, p, reqOpt)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	defer resp.Body.Close()
@@ -120,7 +121,7 @@ func RequestWithRetry(p interfaces.Vendor, retry int, timeoutMillisecond int64, 
 	var redirects = []string{}
 
 	for i := 0; resp == nil && i < structs.WithIn(retry, 1, 10); i += 1 {
-		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeoutMillisecond)*time.Millisecond)
+		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(timeoutMillisecond)*time.Hour)
 		_, retBody, resp, redirects = Request(ctx, p, reqOpt)
 		cancel()
 	}

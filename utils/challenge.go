@@ -5,6 +5,7 @@ import (
 	"crypto/sha512"
 	"encoding/base64"
 	"encoding/hex"
+	"github.com/miaokobot/miaospeed/preconfigs"
 	"strings"
 
 	jsoniter "github.com/json-iterator/go"
@@ -13,7 +14,7 @@ import (
 
 // aws-v4-signature-like signing method
 func hashMiaoSpeed(token, request string) string {
-	buildTokens := append([]string{token}, strings.Split(strings.TrimSpace(BUILDTOKEN), "|")...)
+	buildTokens := append([]string{token}, strings.Split(strings.TrimSpace(preconfigs.ECFG.BuildToken), "|")...)
 
 	hasher := sha512.New()
 	hasher.Write([]byte(request))
