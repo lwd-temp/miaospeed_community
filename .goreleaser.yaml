@@ -3,7 +3,7 @@ builds:
     dir: .
     binary: miaospeed
     ldflags:
-      - -s -w -X "main.COMMIT={{.Commit}}" -X "main.BUILDCOUNT={{2}}" -X "main.BRAND={{Miaospeed}}" -X "main.COMPILATIONTIME={{.Env.COMPILATIONTIME}}"
+      - -s -w -X "main.COMMIT={{.Commit}}" -X "main.BUILDCOUNT=2" -X "main.BRAND=Miaospeed" -X "main.COMPILATIONTIME=0"
     goos:
       - darwin
       - linux

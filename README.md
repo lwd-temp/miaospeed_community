@@ -13,6 +13,7 @@
 基本使用方式与官方版本无异，您可以参考以下指导进行使用。
 
 ### 子命令
+部分说明来自[翻翻墙社区](https://www.ffqla.net/d/29-miaospeedbu-shu-zhi-nan)。
 * **server** 启动miaospeed作为后端服务器。
 * **script** 运行临时脚本测试来测试脚本的正确性。
 * **misc** 提供miaospeed额外功能。
